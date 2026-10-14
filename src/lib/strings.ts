@@ -14,6 +14,7 @@ export const strings = {
     login: "LOGIN",
     logout: "LOGOUT",
     hint: "// press TAB to enter the menu — ARROW KEYS to select, ENTER to run",
+    privacy: "PRIVACY",
     version: "LORDS OF LOGIC v0.1.0",
     multiplayerStatus: "STATUS: UNDER CONSTRUCTION",
     multiplayerDescription: [
@@ -32,6 +33,8 @@ export const strings = {
     hint: "// pick a provider — google or discord only",
     errorGeneric: "ERROR: SIGN-IN FAILED",
     errorAuthCode: "ERROR: AUTH CODE EXCHANGE FAILED",
+    privacyNotice: "// by signing in you agree to the",
+    privacyLink: "PRIVACY POLICY",
   },
   nickname: {
     prompt: "C:\\LORDS_OF_LOGIC\\NICKNAME>",
@@ -101,5 +104,56 @@ export const strings = {
     hint: "// 5 questions · 15 seconds each",
     errorMatchNotFound: "ERROR: MATCH NOT FOUND",
     errorNoQuestions: "ERROR: NO QUESTIONS AVAILABLE",
+  },
+  privacy: {
+    prompt: "C:\\LORDS_OF_LOGIC\\PRIVACY>",
+    title: "PRIVACY",
+    tagline: "what we collect and why",
+    updated: "// last updated: 2026-10-13",
+    // Public contact for privacy and account-deletion requests.
+    contactEmail: "neuralweb@gmail.com",
+    sections: [
+      {
+        heading: "WHAT WE COLLECT",
+        lines: [
+          "When you sign in with Google or Discord, we receive your email address, name and avatar from that provider. We never see your password.",
+          "We store the nickname you choose and your game results: round scores, total XP and number of matches played.",
+        ],
+      },
+      {
+        heading: "WHY",
+        lines: [
+          "To sign you in, keep your progress and show the global ranking. Nothing else.",
+          "We don't sell your data, show ads, or use third-party analytics or tracking.",
+        ],
+      },
+      {
+        heading: "WHAT IS PUBLIC",
+        lines: [
+          "The ranking shows your nickname, title, total XP, matches played and join date to everyone. Your email, name and avatar are never shown.",
+        ],
+      },
+      {
+        heading: "COOKIES",
+        lines: [
+          "Only the cookies needed to keep you signed in. No advertising or tracking cookies.",
+        ],
+      },
+      {
+        heading: "WHERE IT LIVES",
+        lines: [
+          "Data is stored with Supabase (database and authentication). The site is hosted on Vercel.",
+        ],
+      },
+      {
+        heading: "DELETING YOUR DATA",
+        lines: [
+          "Email us from the address you signed in with and we will delete your account, profile and game history.",
+        ],
+      },
+    ],
+    contactLabel: "CONTACT:",
+    back: "< BACK",
+    hint: "// questions about your data? email us",
   },
 } as const;

@@ -96,6 +96,12 @@ export default async function Home({ searchParams }: HomeProps) {
         <footer className="mt-6 flex flex-col gap-1 text-xs text-term-secondary">
           <p>{strings.landing.version}</p>
           <p>{strings.landing.hint}</p>
+          <Link
+            href="/privacy"
+            className="mt-2 w-fit text-term-secondary underline transition-none hover:bg-term-primary hover:text-term-bg hover:no-underline focus:bg-term-primary focus:text-term-bg focus:no-underline focus:outline-none"
+          >
+            {strings.landing.privacy}
+          </Link>
         </footer>
       </div>
     </main>
