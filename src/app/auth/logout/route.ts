@@ -1,11 +1,11 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
+import { requestOrigin } from "@/lib/request-origin";
 import { createClient } from "@/lib/supabase/server";
 
-export async function GET(request: Request) {
+export async function GET(request: NextRequest) {
   const supabase = await createClient();
   await supabase.auth.signOut();
 
-  const { origin } = new URL(request.url);
-  return NextResponse.redirect(`${origin}/`);
+  return NextResponse.redirect(`${requestOrigin(request)}/`);
 }
