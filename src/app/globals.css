@@ -8,6 +8,10 @@
 
   --animate-pong-bounce: pong-bounce 3.5s linear infinite alternate;
   --animate-cursor-blink: cursor-blink 1s steps(1) infinite;
+  --animate-invader-march: invader-march 1s steps(1) infinite;
+  --animate-invader-march-alt: invader-march-alt 1s steps(1) infinite;
+  --animate-invader-shot: invader-shot 0.3s linear forwards;
+  --animate-invader-hit: invader-hit 0.3s steps(1) both;
 
   @keyframes pong-bounce {
     from {
@@ -26,6 +30,54 @@
     50%,
     100% {
       opacity: 0;
+    }
+  }
+
+  /* Two-frame sprite swap; frame B starts hidden, so reduced motion shows A. */
+  @keyframes invader-march {
+    0%,
+    49% {
+      visibility: visible;
+    }
+    50%,
+    100% {
+      visibility: hidden;
+    }
+  }
+
+  @keyframes invader-march-alt {
+    0%,
+    49% {
+      visibility: hidden;
+    }
+    50%,
+    100% {
+      visibility: visible;
+    }
+  }
+
+  /* From just above the cannon to the bottom of the invader row. */
+  @keyframes invader-shot {
+    from {
+      top: calc(100% - 2.25rem);
+      opacity: 1;
+    }
+    99% {
+      opacity: 1;
+    }
+    to {
+      top: 2.25rem;
+      opacity: 0;
+    }
+  }
+
+  /* Explosion shows up once the shot lands. */
+  @keyframes invader-hit {
+    from {
+      visibility: hidden;
+    }
+    to {
+      visibility: visible;
     }
   }
 }
