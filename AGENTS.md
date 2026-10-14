@@ -30,8 +30,11 @@ just don't paint yourself into a corner by hardcoding text everywhere.
 - `npm run dev` — start the dev server.
 - `npm run build` — production build (includes the TypeScript typecheck).
 - `npm run lint` — ESLint.
-- Tests: no test framework installed yet; add one before the first
-  test suite is written.
+- `npm test` — Vitest unit tests (`src/**/*.test.ts`), no services needed.
+- `npm run test:db` — integration tests (`tests/db/`) against the local
+  Supabase stack (`npx supabase start`, keys in `.env.local`). They create
+  and delete their own users and `zz-test-` question fixtures.
+- `npm run test:all` — both.
 
 ## Scope discipline
 
