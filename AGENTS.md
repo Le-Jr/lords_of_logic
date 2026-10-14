@@ -59,6 +59,8 @@ just don't paint yourself into a corner by hardcoding text everywhere.
   structure is already meant to accommodate future async multiplayer
   without needing to remodel routes later)
 - `/ranking` — ranking
+- `/privacy` — privacy policy (required by the Google OAuth consent
+  screen)
 
 Don't create routes outside this set without confirming — the
 structure was decided deliberately.

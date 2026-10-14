@@ -44,6 +44,12 @@ export default async function LoginPage({
         </Link>
 
         <p className="mt-4 text-xs text-term-secondary">{strings.login.hint}</p>
+        <p className="mt-1 text-xs text-term-secondary">
+          {strings.login.privacyNotice}{" "}
+          <Link href="/privacy" className="px-1 underline transition-none hover:bg-term-primary hover:text-term-bg hover:no-underline focus:bg-term-primary focus:text-term-bg focus:no-underline focus:outline-none">
+            {strings.login.privacyLink}
+          </Link>
+        </p>
       </div>
     </main>
   );
