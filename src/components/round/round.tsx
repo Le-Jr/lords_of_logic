@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 
-import { Pong } from "@/components/pong";
+import { Invaders } from "@/components/invaders";
 import { PromptLine } from "@/components/prompt-line";
 import type { Question } from "@/lib/questions/schema";
 import { roundScore, xpFromScore } from "@/lib/scoring";
@@ -123,11 +123,6 @@ export function Round({
     });
   }, [phase, roundId, categoryDisplay, answers]);
 
-  const progress =
-    phase === "result"
-      ? 1
-      : (currentIndex + (phase === "question" ? 0 : 1)) / total;
-
   return (
     <main className="flex flex-1 flex-col items-center justify-center px-6 py-12">
       <div className="flex w-full max-w-[40rem] flex-col">
@@ -171,7 +166,11 @@ export function Round({
 
         {phase !== "result" ? (
           <div className="mt-12 w-full max-w-[24rem]">
-            <Pong progress={progress} />
+            <Invaders
+              total={total}
+              current={currentIndex}
+              results={answers.map((answer) => answer.result)}
+            />
           </div>
         ) : null}
 

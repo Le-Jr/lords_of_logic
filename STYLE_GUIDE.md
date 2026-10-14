@@ -8,11 +8,13 @@ from it, not for you to copy something ready-made.
 
 Monochrome MS-DOS terminal. The game is dev trivia, so the visual
 reference comes from computing history itself, not generic retro
-aesthetics. There's a single recurring signature element: a Pong ball
-bouncing between two paddles — it can show up as hero decoration, a
-loading indicator, or a progress indicator inside a match, but it's
-always the same element, never a second animated motif competing with
-it.
+aesthetics. There are two arcade motifs, each with one fixed job, and
+never both on the same screen:
+
+- **Pong** — the signature element outside a match: a ball bouncing
+  between two paddles, as hero decoration or a loading indicator.
+- **Invaders** — the progress indicator inside a match (see Component
+  patterns). It replaces Pong there; it never appears outside a match.
 
 ## Color
 
@@ -70,6 +72,14 @@ the product genuinely monochrome.
   header row, body rows in `text-sm`; numeric columns (rank, XP,
   matches) right-aligned with `tabular-nums` so figures line up like
   terminal output.
+- **Invaders (match progress)**: a content box with one 1978-style
+  bitmap invader per question in a row at the top and a cannon at the
+  bottom, under the current question's invader. A correct answer fires
+  a shot and leaves that invader as dimmed debris (secondary color); a
+  wrong answer or timeout leaves it standing, one row lower. Sprites are
+  pixel bitmaps in the primary color, square pixels, no anti-aliasing.
+  Decorative (`aria-hidden`): the question counter carries the same
+  information as text.
 - **Keyboard focus cursor**: same visual treatment as hover — a solid
   block inverting colors. This replaces the browser's default outline
   and should never be removed without that substitute.
@@ -81,8 +91,10 @@ it instead of reinventing it.
 
 ## Motion
 
-- One continuous animation per screen at most — the Pong ball (or the
-  blinking cursor, which is nearly static). Don't stack multiple
+- One continuous animation per screen at most — the Pong ball, or the
+  invaders' two-frame stepped march inside a match (plus the blinking
+  cursor, which is nearly static). The Invaders shot/explosion is a
+  one-off event reaction, not a continuous animation. Don't stack multiple
   decorative animations on the same screen.
 - No soft "ease-in-out" decorative easing. Movement is linear or
   stepped, like a real terminal — not like a modern smooth interface.
