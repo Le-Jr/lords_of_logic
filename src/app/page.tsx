@@ -1,3 +1,6 @@
+import Link from "next/link";
+
+import { ConstructionSite } from "@/components/construction-site";
 import { Menu } from "@/components/menu";
 import type { MenuItem } from "@/components/menu";
 import { Pong } from "@/components/pong";
@@ -6,7 +9,16 @@ import { createClient } from "@/lib/supabase/server";
 import { strings } from "@/lib/strings";
 import { getUserStatus } from "@/lib/user-status";
 
-export default async function Home() {
+type HomeProps = {
+  // `?view=multiplayer` shows the under-construction teaser in place of the
+  // Pong hero; multiplayer has no route of its own yet.
+  searchParams: Promise<{ view?: string | string[] }>;
+};
+
+export default async function Home({ searchParams }: HomeProps) {
+  const { view } = await searchParams;
+  const showMultiplayer = view === "multiplayer";
+
   const supabase = await createClient();
   const { data } = await supabase.auth.getUser();
   const status = await getUserStatus(supabase);
@@ -21,6 +33,7 @@ export default async function Home() {
 
   const menuLinks: MenuItem[] = [
     { href: "/play", label: strings.landing.play },
+    { href: "/?view=multiplayer", label: strings.landing.multiplayer },
     { href: "/ranking", label: strings.landing.ranking },
     ...(settingsLink ? [settingsLink] : []),
     authLink,
@@ -40,13 +53,38 @@ export default async function Home() {
             </p>
           </div>
 
-          <Pong />
+          {showMultiplayer ? (
+            <>
+              <ConstructionSite />
 
-          <div className="flex flex-col gap-1 text-xs text-term-secondary">
-            {strings.landing.description.map((line) => (
-              <p key={line}>{line}</p>
-            ))}
-          </div>
+              <div className="flex flex-col gap-1 text-xs">
+                <p className="font-bold text-term-primary">
+                  {strings.landing.multiplayerStatus}
+                </p>
+                {strings.landing.multiplayerDescription.map((line) => (
+                  <p key={line} className="text-term-secondary">
+                    {line}
+                  </p>
+                ))}
+                <Link
+                  href="/"
+                  className="mt-3 w-fit px-2 py-1 text-sm uppercase text-term-primary whitespace-nowrap transition-none hover:bg-term-primary hover:text-term-bg focus:bg-term-primary focus:text-term-bg focus:outline-none"
+                >
+                  {strings.landing.multiplayerBack}
+                </Link>
+              </div>
+            </>
+          ) : (
+            <>
+              <Pong />
+
+              <div className="flex flex-col gap-1 text-xs text-term-secondary">
+                {strings.landing.description.map((line) => (
+                  <p key={line}>{line}</p>
+                ))}
+              </div>
+            </>
+          )}
         </section>
 
         <nav className="mt-12">

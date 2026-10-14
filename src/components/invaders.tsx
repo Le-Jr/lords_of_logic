@@ -1,7 +1,9 @@
+import { Sprite } from "@/components/pixel-art";
+import type { Bitmap } from "@/components/pixel-art";
 import type { AnswerResult } from "@/lib/scoring";
 
 // 1978 arcade bitmaps, one character per pixel ("X" = lit).
-const INVADER_FRAMES = [
+const INVADER_FRAMES: Bitmap[] = [
   [
     "..X.....X..",
     "...X...X...",
@@ -24,7 +26,7 @@ const INVADER_FRAMES = [
   ],
 ];
 
-const EXPLOSION = [
+const EXPLOSION: Bitmap = [
   ".X...X...X.",
   "..X..X..X..",
   "...X...X...",
@@ -35,7 +37,7 @@ const EXPLOSION = [
   "...........",
 ];
 
-const CANNON = [
+const CANNON: Bitmap = [
   "......X......",
   ".....XXX.....",
   ".....XXX.....",
@@ -44,29 +46,6 @@ const CANNON = [
   "XXXXXXXXXXXXX",
   "XXXXXXXXXXXXX",
 ];
-
-const PIXEL = 3;
-
-function Sprite({ rows, className }: { rows: string[]; className?: string }) {
-  const width = rows[0].length;
-  return (
-    <svg
-      viewBox={`0 0 ${width} ${rows.length}`}
-      width={width * PIXEL}
-      height={rows.length * PIXEL}
-      shapeRendering="crispEdges"
-      className={className}
-    >
-      {rows.flatMap((row, y) =>
-        [...row].map((pixel, x) =>
-          pixel === "X" ? (
-            <rect key={`${x}-${y}`} x={x} y={y} width={1} height={1} fill="currentColor" />
-          ) : null,
-        ),
-      )}
-    </svg>
-  );
-}
 
 type InvadersProps = {
   /** Number of questions in the round: one invader each. */

@@ -8,13 +8,16 @@ from it, not for you to copy something ready-made.
 
 Monochrome MS-DOS terminal. The game is dev trivia, so the visual
 reference comes from computing history itself, not generic retro
-aesthetics. There are two arcade motifs, each with one fixed job, and
-never both on the same screen:
+aesthetics. There are three pixel motifs, each with one fixed job, and
+never two on the same screen:
 
 - **Pong** — the signature element outside a match: a ball bouncing
   between two paddles, as hero decoration or a loading indicator.
 - **Invaders** — the progress indicator inside a match (see Component
   patterns). It replaces Pong there; it never appears outside a match.
+- **Construction site** — placeholder for a feature that isn't built
+  yet (see Component patterns). It takes Pong's place in the hero slot
+  while that feature's teaser is shown.
 
 ## Color
 
@@ -80,6 +83,15 @@ the product genuinely monochrome.
   pixel bitmaps in the primary color, square pixels, no anti-aliasing.
   Decorative (`aria-hidden`): the question counter carries the same
   information as text.
+- **Construction site (feature teaser)**: a content box with a
+  pixel-art tech construction site — a half-built server rack with
+  scaffolding, a tower crane lowering a rack unit, and mini builders in
+  hard hats (one hammering, one carrying a part). Background structures
+  (crane, scaffolding) in secondary color, building and builders in the
+  primary color, ground as a dashed border-color line. Below it, a
+  status line (`STATUS: UNDER CONSTRUCTION`, bold primary) and
+  `//`-style captions. The teaser lives on the screen that links to the
+  feature (e.g. `/?view=multiplayer` on the landing), not on a new route.
 - **Keyboard focus cursor**: same visual treatment as hover — a solid
   block inverting colors. This replaces the browser's default outline
   and should never be removed without that substitute.
@@ -91,9 +103,10 @@ it instead of reinventing it.
 
 ## Motion
 
-- One continuous animation per screen at most — the Pong ball, or the
-  invaders' two-frame stepped march inside a match (plus the blinking
-  cursor, which is nearly static). The Invaders shot/explosion is a
+- One continuous animation per screen at most — the Pong ball, the
+  invaders' two-frame stepped march inside a match, or the construction
+  site scene (its builders and crane move together on stepped timing,
+  as one scene) — plus the blinking cursor, which is nearly static. The Invaders shot/explosion is a
   one-off event reaction, not a continuous animation. Don't stack multiple
   decorative animations on the same screen.
 - No soft "ease-in-out" decorative easing. Movement is linear or
