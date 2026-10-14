@@ -8,10 +8,14 @@
 
   --animate-pong-bounce: pong-bounce 3.5s linear infinite alternate;
   --animate-cursor-blink: cursor-blink 1s steps(1) infinite;
-  --animate-invader-march: invader-march 1s steps(1) infinite;
-  --animate-invader-march-alt: invader-march-alt 1s steps(1) infinite;
+  --animate-invader-march: frame-a 1s steps(1) infinite;
+  --animate-invader-march-alt: frame-b 1s steps(1) infinite;
   --animate-invader-shot: invader-shot 0.3s linear forwards;
   --animate-invader-hit: invader-hit 0.3s steps(1) both;
+  --animate-site-frame-a: frame-a 0.5s steps(1) infinite;
+  --animate-site-frame-b: frame-b 0.5s steps(1) infinite;
+  --animate-site-walk: site-walk 9s linear infinite;
+  --animate-site-hoist: site-hoist 4s steps(8, jump-none) infinite alternate;
 
   @keyframes pong-bounce {
     from {
@@ -34,7 +38,7 @@
   }
 
   /* Two-frame sprite swap; frame B starts hidden, so reduced motion shows A. */
-  @keyframes invader-march {
+  @keyframes frame-a {
     0%,
     49% {
       visibility: visible;
@@ -45,7 +49,7 @@
     }
   }
 
-  @keyframes invader-march-alt {
+  @keyframes frame-b {
     0%,
     49% {
       visibility: hidden;
@@ -68,6 +72,35 @@
     to {
       top: 2.25rem;
       opacity: 0;
+    }
+  }
+
+  /* Construction site: walk right in 2px steps, turn, walk back. */
+  @keyframes site-walk {
+    0% {
+      transform: translateX(0) scaleX(1);
+      animation-timing-function: steps(18, jump-none);
+    }
+    49.9% {
+      transform: translateX(36px) scaleX(1);
+      animation-timing-function: steps(1);
+    }
+    50% {
+      transform: translateX(36px) scaleX(-1);
+      animation-timing-function: steps(18, jump-none);
+    }
+    100% {
+      transform: translateX(0) scaleX(-1);
+    }
+  }
+
+  /* Crane lowers the rack unit onto the scaffolding and lifts it back. */
+  @keyframes site-hoist {
+    from {
+      transform: translateY(0);
+    }
+    to {
+      transform: translateY(8px);
     }
   }
 

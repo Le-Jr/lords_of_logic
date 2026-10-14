@@ -9,11 +9,18 @@ export const strings = {
       "// web stack, platforms, and dev best practices.",
     ],
     play: "PLAY",
+    multiplayer: "MULTIPLAYER",
     ranking: "RANKING",
     login: "LOGIN",
     logout: "LOGOUT",
     hint: "// press TAB to enter the menu — ARROW KEYS to select, ENTER to run",
     version: "LORDS OF LOGIC v0.1.0",
+    multiplayerStatus: "STATUS: UNDER CONSTRUCTION",
+    multiplayerDescription: [
+      "// async multiplayer: same questions, other devs, compare scores.",
+      "// our builders are on it. play solo in the meantime.",
+    ],
+    multiplayerBack: "< BACK",
   },
   login: {
     prompt: "C:\\LORDS_OF_LOGIC\\LOGIN>",
